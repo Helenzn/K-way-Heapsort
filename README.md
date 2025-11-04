@@ -9,3 +9,9 @@
 
 ## O que faz o Heapsort
 - Transforma o vetor em uma estrutura de heap (árvore binária), onde o maior elemento fica na raiz. Depois remove a raiz (máximo) e reconstrói o heap, repetindo até ordenar.
+
+## Contribuições Cronograma
+- 05/11: Commit significativo da Paula, criação das branches por integrantes pela Helen
+- 12/11
+- 19/11
+- 26/11
