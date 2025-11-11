@@ -1,19 +1,20 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include <iomanip>
-#include <cassert>
-#include <chrono>
-#include <random>
+#include<iomanip>
+#include<cassert>
+#include<chrono>
+#include<random>
 
 using namespace std;
 
 #define MAXN 200000
 #define MAXM 100
 #define ALL(x) (x).begin(), (x).end()
-#define PAI(x) (((x)- 1) / 2)
-#define ESQ(x) ( 2 *(x) + 1)
-#define DIR(x) ( 2 *(x) + 2)
+
+//#define PAI(x) ((((x)- 1) / 2))
+//#define ESQ(x) ( 2 *(x) + 1)
+//#define DIR(x) ( 2 *(x) + 2)
 
 enum inputType {
     allRandom  = 0,
@@ -95,23 +96,17 @@ void heapsort(vector<T> &a);
 
 template <typename T>
 void maxHeapify(vector<T> &a, int i, int tam) {
-    int l = ESQ(i);
-    int r = DIR(i);
-    int maior;
-    if(l < tam && a[l] > a[i]){
-        maior = l;
-    }
-    else {
-        maior = i;
-    }
-
-    if(r < tam && a[r] > a[maior]){
-        maior = r;
+    int maior = i;
+    for(int k = 1; k <= 3; k++){
+        int filho = 3*i+k;
+        if(filho < tam && a[filho] > a[maior]){
+            maior = filho;
+        }
     }
 
     if(maior != i){
         swap(a[i],a[maior]);
-        maxHeapify(a,maior,tam);
+        maxHeapify<T>(a,maior,tam);
     }
 
 }
@@ -119,22 +114,21 @@ void maxHeapify(vector<T> &a, int i, int tam) {
 template <typename T>
 void buildMaxHeap(vector<T> &a) {
     int n = a.size();
-    for(int i = (n/2-1); i >= 0; i--){
-        maxHeapify(a,i,n);
+    for(int i = n/3; i >= 0; i--){
+        maxHeapify<T>(a,i,n);
     }
 }
 
 template <typename T>
 void heapsort(vector<T> &a) {
     int n = a.size();
-    buildMaxHeap(a);
+    buildMaxHeap<T>(a);
 
     for(int i = (n-1); i > 0; i--){
         swap(a[0],a[i]);
-        maxHeapify(a,0,i);
+        maxHeapify<T>(a,0,i);
     }
 }
-
 
 
 
