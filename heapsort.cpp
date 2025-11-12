@@ -1,9 +1,10 @@
-#include<iostream>
+#include <iostream>
+#include <concepts>
 
 using namespace std;
 
-#define PAI(x) ((x)- 1) / 2)
-#define ESQ(x) ( 2 *(x) + 1)
-#define DIR(x) ( 2 *(x) + 2)
+// Macros para que possa funcionar para qualquer valor em K
+#define PAI(x, K) (((x) - 1) / K)
+#define FILHO(x, K, i) ((K) * (x) + (i) + 1)
 
 template <typename T>
